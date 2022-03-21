@@ -22,19 +22,18 @@ export class InformacoesControler {
 
     @Post()
     async criar(@Body() cliente: Info) {
-        this.infoService.criar(cliente)
-        return 'Cliente cadastrado'
+        return await this.infoService.criar(cliente)
     }
 
     @Put(':id')
-    async alterar(@Param("id") ids , @Body() cliente: Info): Promise<Info> {
+    async alterar(@Param("id") ids: number, @Body() cliente: Info): Promise<Info> {
         return this.infoService.alterar(ids, cliente)
 
     }
 
     @Delete(':id')
-    async apagar(@Param() params) {
-        this.infoService.apagar(params.id)
+    async apagar(@Param("id") id: number) {
+        this.infoService.apagar(id)
         return 'Cliente removido'
     }
 }
